@@ -86,12 +86,12 @@ export default function Home() {
         </div>
 
         {/* Featured Carousel */}
-        <section className="mb-12">
+        <section className="mb-12 mx-40">
           <Carousel images={carouselImages} />
         </section>
 
         {/* Suggested Artists */}
-        <section className="mb-12">
+        <section className="mb-12 mx-5">
           <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white transition-colors duration-200">
             Suggested Artists
           </h2>
@@ -103,7 +103,7 @@ export default function Home() {
         </section>
 
         {/* Reviews */}
-        <section className="mb-12">
+        <section className="mb-12 mx-5">
           <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white transition-colors duration-200">
             Latest Reviews
           </h2>
@@ -115,7 +115,7 @@ export default function Home() {
         </section>
 
         {/* Discover by Genre */}
-        <section className="mb-12">
+        <section className="mb-12 mx-5">
           <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white transition-colors duration-200">
             Discover by Genre
           </h2>
