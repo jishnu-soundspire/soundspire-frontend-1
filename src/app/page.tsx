@@ -3,11 +3,12 @@
 import { useTheme } from '@/context/ThemeContext';
 import { useAuth } from '@/context/AuthContext';
 import { FaSpotify, FaGoogle } from 'react-icons/fa';
+import { FiSun, FiMoon } from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function LoginPage() {
-  const { isDarkMode } = useTheme();
+  const { isDarkMode, toggleTheme } = useTheme();
   const { login, isLoading, user } = useAuth();
   const router = useRouter();
 
@@ -35,9 +36,19 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
-      {/* For Artists Button */}
-      <div className="absolute top-4 right-4">
-        <button className="px-6 py-2 rounded-full bg-primary hover:bg-primary/90 text-white font-semibold transition-colors duration-200">
+      {/* Theme Toggle and For Artists Button */}
+      <div className="absolute top-4 right-4 flex items-center gap-4">
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+        >
+          {isDarkMode ? (
+            <FiSun className="h-5 w-5 text-gray-800 dark:text-gray-200" />
+          ) : (
+            <FiMoon className="h-5 w-5 text-gray-800 dark:text-gray-200" />
+          )}
+        </button>
+        <button className="px-6 py-2 rounded-full bg-[#FF2800] hover:bg-[#00BFFF] text-white font-semibold transition-colors duration-200">
           For Artists
         </button>
       </div>
@@ -67,7 +78,7 @@ export default function LoginPage() {
           <button
             onClick={handleGoogleLogin}
             disabled={isLoading}
-            className="w-full flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white hover:bg-gray-50 text-gray-700 font-semibold border border-gray-300 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white hover:bg-gray-50 text-gray-700 font-semibold border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <FaGoogle className="text-xl" />
             {isLoading ? 'Loading...' : 'Continue with Google'}
@@ -75,7 +86,7 @@ export default function LoginPage() {
         </div>
 
         {/* Terms and Privacy */}
-        <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+        <div className="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
           By continuing, you agree to SoundSpire's{' '}
           <a href="#" className="text-primary hover:underline">
             Terms of Service

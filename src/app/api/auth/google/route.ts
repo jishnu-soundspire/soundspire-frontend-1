@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { generateState } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const state = generateState();
