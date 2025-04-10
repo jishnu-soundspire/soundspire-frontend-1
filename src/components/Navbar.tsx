@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { FiSun, FiMoon } from 'react-icons/fi';
+import { useAuth } from '@/context/AuthContext';
 
 interface NavbarProps {
   isDarkMode: boolean;
@@ -11,6 +12,7 @@ interface NavbarProps {
 
 const Navbar = ({ isDarkMode, toggleTheme }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { logout } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 shadow-md">
@@ -29,17 +31,25 @@ const Navbar = ({ isDarkMode, toggleTheme }: NavbarProps) => {
             SoundSpire
           </div>
 
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white"
-          >
-            {isDarkMode ? (
-              <FiSun className="h-6 w-6" />
-            ) : (
-              <FiMoon className="h-6 w-6" />
-            )}
-          </button>
+          {/* Theme Toggle and Logout */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={toggleTheme}
+              className="text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white"
+            >
+              {isDarkMode ? (
+                <FiSun className="h-6 w-6" />
+              ) : (
+                <FiMoon className="h-6 w-6" />
+              )}
+            </button>
+            <button
+              onClick={logout}
+              className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors duration-200"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </div>
 
