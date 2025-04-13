@@ -122,22 +122,22 @@ export default function ExplorePage() {
             {[
               {
                 name: "Rock",
-                imageUrl: "/images/genres/placeholder.jpg",
+                imageUrl: "/images/placeholder.jpg",
                 color: "bg-red-500"
               },
               {
                 name: "Hip Hop",
-                imageUrl: "/images/genres/placeholder.jpg",
+                imageUrl: "/images/placeholder.jpg",
                 color: "bg-blue-500"
               },
               {
                 name: "Jazz",
-                imageUrl: "/images/genres/placeholder.jpg",
+                imageUrl: "/images/placeholder.jpg",
                 color: "bg-yellow-500"
               },
               {
                 name: "Electronic",
-                imageUrl: "/images/genres/placeholder.jpg",
+                imageUrl: "/images/placeholder.jpg",
                 color: "bg-purple-500"
               }
             ].map((genre: {
