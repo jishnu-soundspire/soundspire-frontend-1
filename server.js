@@ -2,14 +2,18 @@ const { createServer } = require('https');
 const { parse } = require('url');
 const next = require('next');
 const fs = require('fs');
+const path = require('path');
 
 const dev = process.env.NODE_ENV !== 'production';
+const port = parseInt(process.env.PORT, 10) || 3000;
+const host = '0.0.0.0';
+
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const httpsOptions = {
-  key: fs.readFileSync('./localhost-key.pem'),
-  cert: fs.readFileSync('./localhost.pem')
+  key: fs.readFileSync(path.join(__dirname, 'certs', 'localhost-key.pem')),
+  cert: fs.readFileSync(path.join(__dirname, 'certs', 'localhost.pem'))
 };
 
 app.prepare().then(() => {
@@ -22,8 +26,8 @@ app.prepare().then(() => {
       res.statusCode = 500;
       res.end('Internal Server Error');
     }
-  }).listen(3000, (err) => {
+  }).listen(port, host, (err) => {
     if (err) throw err;
-    console.log('> Ready on https://localhost:3000');
+    console.log(`> Ready on https://${host}:${port}`);
   });
 }); 
