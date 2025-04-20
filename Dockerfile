@@ -49,5 +49,9 @@ COPY --from=builder /app/node_modules ./node_modules
 # Expose the port
 EXPOSE 3000
 
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD wget --no-verbose --tries=1 --spider https://localhost:3000/api/health || exit 1
+
 # Start the application
 CMD ["node", "server.js"] 
