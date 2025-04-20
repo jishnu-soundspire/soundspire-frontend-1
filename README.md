@@ -2,7 +2,35 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+First, setup SSL Certificate files by running:
+
+```shell
+mkcert -install
+mkcert localhost
+```
+
+Then, generate the NEXTAUTH_SECRET by running:
+
+```
+openssl rand -base64 32
+```
+
+Then, make a `.env.local` file with the following values populated:
+
+```
+# Google OAuth
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+
+# Base URL for OAuth redirects
+NEXT_PUBLIC_BASE_URL=https://localhost:3000
+
+# NextAuth configuration
+NEXTAUTH_URL=https://localhost:3000
+NEXTAUTH_SECRET="" 
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -14,7 +42,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [https://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
@@ -28,9 +56,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
