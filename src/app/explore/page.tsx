@@ -1,6 +1,5 @@
 'use client';
 
-import { useTheme } from '@/context/ThemeContext';
 import Navbar from '@/components/Navbar';
 import Carousel from '@/components/Carousel';
 import ArtistCard from '@/components/ArtistCard';
@@ -10,11 +9,9 @@ import GenreCard from '@/components/GenreCard';
 // ... (keep all the existing dummy data)
 
 export default function ExplorePage() {
-  const { isDarkMode, toggleTheme } = useTheme();
-
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
-      <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+    <div className="min-h-screen">
+      <Navbar />
       
       <main className="container mx-auto px-4 pt-20 pb-12">
         {/* Search Bar */}
@@ -22,7 +19,7 @@ export default function ExplorePage() {
           <input
             type="text"
             placeholder="Search for artists, albums, or songs..."
-            className="w-full px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary transition-colors duration-200"
+            className="w-full px-4 py-2 rounded-full border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary transition-colors duration-200"
           />
         </div>
 
@@ -32,14 +29,14 @@ export default function ExplorePage() {
             <Carousel images={[
               '/images/placeholder.jpg',
               '/images/placeholder.jpg', 
-              '/images/placeholder  .jpg'
+              '/images/placeholder.jpg'
             ]} />
           </div>
         </section>
 
         {/* Suggested Artists */}
         <section className="mb-12 max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white transition-colors duration-200">
+          <h2 className="text-2xl font-bold mb-6 text-white">
             Suggested Artists
           </h2>
           <div className="flex gap-6 overflow-x-auto pb-4">
@@ -75,7 +72,7 @@ export default function ExplorePage() {
 
         {/* Reviews */}
         <section className="mb-12 max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white transition-colors duration-200">
+          <h2 className="text-2xl font-bold mb-6 text-white">
             Latest Reviews
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -98,53 +95,35 @@ export default function ExplorePage() {
                 albumName: "Album 3",
                 artistName: "Artist 3",
                 coverImage: "/images/placeholder.jpg",
-                reviewText: "Masterpiece",
+                reviewText: "Amazing work",
                 rating: 5.0
               }
-            ].map((review: {
-              albumName: string;
-              artistName: string;
-              coverImage: string;
-              reviewText: string;
-              rating: number;
-            }, index: number) => (
+            ].map((review, index) => (
               <ReviewCard key={index} {...review} />
             ))}
           </div>
         </section>
 
-        {/* Discover by Genre */}
-        <section className="mb-12 max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white transition-colors duration-200">
-            Discover by Genre
+        {/* Genres */}
+        <section className="max-w-7xl mx-auto">
+          <h2 className="text-2xl font-bold mb-6 text-white">
+            Popular Genres
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
-              {
-                name: "Rock",
-                imageUrl: "/images/placeholder.jpg",
-                color: "bg-red-500"
-              },
-              {
-                name: "Hip Hop",
-                imageUrl: "/images/placeholder.jpg",
-                color: "bg-blue-500"
-              },
-              {
-                name: "Jazz",
-                imageUrl: "/images/placeholder.jpg",
-                color: "bg-yellow-500"
-              },
-              {
-                name: "Electronic",
-                imageUrl: "/images/placeholder.jpg",
-                color: "bg-purple-500"
-              }
-            ].map((genre: {
-              name: string;
-              imageUrl: string;
-              color: string;
-            }, index: number) => (
+              { name: "Pop", imageUrl: "/images/placeholder.jpg" },
+              { name: "Rock", imageUrl: "/images/placeholder.jpg" },
+              { name: "Hip Hop", imageUrl: "/images/placeholder.jpg" },
+              { name: "R&B", imageUrl: "/images/placeholder.jpg" },
+              { name: "Electronic", imageUrl: "/images/placeholder.jpg" },
+              { name: "Jazz", imageUrl: "/images/placeholder.jpg" },
+              { name: "Classical", imageUrl: "/images/placeholder.jpg" },
+              { name: "Country", imageUrl: "/images/placeholder.jpg" },
+              { name: "Metal", imageUrl: "/images/placeholder.jpg" },
+              { name: "Folk", imageUrl: "/images/placeholder.jpg" },
+              { name: "Blues", imageUrl: "/images/placeholder.jpg" },
+              { name: "Reggae", imageUrl: "/images/placeholder.jpg" }
+            ].map((genre, index) => (
               <GenreCard key={index} {...genre} />
             ))}
           </div>
