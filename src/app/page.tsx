@@ -36,10 +36,10 @@ export default function LoginPage() {
         {/* Logo and Title */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-white mb-2">
-            SoundSpire
+            <img src="images/logo.png" alt="SoundSpire Logo" className="inline-block" /> 
           </h1>
           <p className="text-white">
-            The Superfandom platform
+            The SuperFandom platform
           </p>
         </div>
 

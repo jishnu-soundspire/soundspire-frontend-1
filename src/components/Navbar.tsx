@@ -1,68 +1,76 @@
 'use client';
 
-import { useState } from 'react';
-import { FaBars } from 'react-icons/fa';
 import { useAuth } from '@/context/AuthContext';
+import { FaHome, FaCompass, FaHeadphones, FaUsers, FaClipboard, FaBell, FaUser, FaCog } from 'react-icons/fa';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useState } from 'react';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const { logout } = useAuth();
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const menuItems = [
+    { icon: FaHome, label: 'Home', href: '/' },
+    { icon: FaCompass, label: 'Explore', href: '/explore' },
+    { icon: FaHeadphones, label: 'My Music', href: '/my-music' },
+    { icon: FaUsers, label: 'My Communities', href: '/communities' },
+    { icon: FaClipboard, label: 'Reviews', href: '/reviews' },
+    { icon: FaBell, label: 'Notifications', href: '/notifications' },
+    { icon: FaUser, label: 'Profile', href: '/profile' },
+    { icon: FaCog, label: 'Settings', href: '/settings' },
+  ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black shadow-md">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          {/* Burger Menu */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-white hover:text-gray-200"
-          >
-            <FaBars className="h-6 w-6" />
-          </button>
-
-          {/* Logo/Brand */}
-          <div className="text-xl font-bold text-white">
+    <nav 
+      className={`fixed left-0 top-0 h-full bg-black transition-all duration-300 z-50 ${
+        isExpanded ? 'w-64' : 'w-16'
+      }`}
+      onMouseEnter={() => setIsExpanded(true)}
+      onMouseLeave={() => setIsExpanded(false)}
+    >
+      <div className="flex flex-col h-full pt-6">
+        {/* Logo */}
+        <Link href="/" className={`flex items-center mb-8 ${isExpanded ? 'px-4' : 'justify-center'}`}>
+          <div className="relative w-8 h-8">
+            <Image
+              src="/images/logo.png"
+              alt="SoundSpire Logo"
+              width={32}
+              height={32}
+              className="object-contain"
+            />
+          </div>
+          <span className={`ml-3 text-white font-bold text-xl whitespace-nowrap transition-all duration-300 ${
+            isExpanded ? 'opacity-100 w-auto' : 'opacity-0 w-0'
+          }`}>
             SoundSpire
-          </div>
+          </span>
+        </Link>
 
-          {/* Logout */}
-          <div className="flex items-center gap-4">
-            <button
-              onClick={logout}
-              className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors duration-200"
+        {/* Divider */}
+        <div className="w-full h-px bg-gray-800 mb-6"></div>
+
+        {/* Navigation Items */}
+        <div className="flex flex-col space-y-2">
+          {menuItems.map((item, index) => (
+            <Link
+              key={index}
+              href={item.href}
+              className={`flex items-center text-gray-300 hover:text-white hover:bg-gray-800 transition-colors duration-200 ${
+                isExpanded ? 'px-4' : 'justify-center'
+              } py-3`}
             >
-              Logout
-            </button>
-          </div>
+              <item.icon className={`w-5 h-5 ${isExpanded ? 'mr-4' : ''}`} />
+              <span className={`whitespace-nowrap transition-all duration-300 ${
+                isExpanded ? 'opacity-100 w-auto' : 'opacity-0 w-0'
+              }`}>
+                {item.label}
+              </span>
+            </Link>
+          ))}
         </div>
       </div>
-
-      {/* Sidebar Menu */}
-      <div
-        className={`fixed inset-y-0 left-0 transform ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        } w-64 bg-black overflow-auto ease-in-out transition-all duration-300 z-30`}
-      >
-        <div className="p-6">
-          <div className="space-y-4">
-            <h2 className="text-xl font-bold text-white">Menu</h2>
-            <ul className="space-y-2">
-              <li className="text-gray-200">Home</li>
-              <li className="text-gray-200">Explore</li>
-              <li className="text-gray-200">Library</li>
-              <li className="text-gray-200">Settings</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-20"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
     </nav>
   );
 };
