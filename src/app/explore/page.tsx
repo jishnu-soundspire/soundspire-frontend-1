@@ -7,6 +7,7 @@ import ReviewCard from '@/components/ReviewCard';
 import GenreCard from '@/components/GenreCard';
 import { FaSearch, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
 
 const carouselItems = [
   {
@@ -31,6 +32,7 @@ const carouselItems = [
 
 export default function ExplorePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { logout } = useAuth();
 
   // Auto-rotate carousel
   useEffect(() => {
@@ -49,21 +51,37 @@ export default function ExplorePage() {
     setCurrentSlide((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
   };
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#1a1625]">
       <Navbar />
       
       <main className="ml-16 px-8 py-6">
-        {/* Search Bar */}
-        <div className="relative max-w-xl mx-auto mb-8">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full px-4 py-2 pl-10 rounded-full bg-[#2d2838] text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+        {/* Search Bar and Logout */}
+        <div className="flex justify-between items-center mb-8">
+          <div className="relative w-full max-w-2xl items-center mx-auto">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="w-full px-4 py-2 pl-10 rounded-full bg-[#2d2838] text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            </div>
           </div>
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 ml-4 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors duration-200"
+          >
+            Logout
+          </button>
         </div>
 
         {/* Featured Carousel */}
