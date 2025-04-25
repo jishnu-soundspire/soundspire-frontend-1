@@ -8,7 +8,7 @@ export default function ProfilePage() {
   const { user, logout } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
-    name: user?.displayName || '',
+    name: user?.name || '',
     age: '',
     gender: '',
     email: user?.email || ''
