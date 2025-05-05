@@ -1,15 +1,11 @@
 interface GenreCardProps {
   name: string;
   imageUrl: string;
-  color: string;
 }
 
-const GenreCard = ({ name, imageUrl, color }: GenreCardProps) => {
+const GenreCard = ({ name, imageUrl }: GenreCardProps) => {
   return (
-    <div
-      className="relative h-32 rounded-lg overflow-hidden cursor-pointer group"
-      style={{ backgroundColor: color }}
-    >
+    <div className="relative h-32 rounded-lg overflow-hidden cursor-pointer group bg-purple-500 hover:bg-gray-800 transition-colors duration-200">
       <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-transparent" />
       <img
         src={imageUrl}
