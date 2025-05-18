@@ -30,6 +30,13 @@ NEXTAUTH_URL=https://localhost:3000
 NEXTAUTH_SECRET="" 
 ```
 
+Install Dependencies:
+```bash
+
+npm install
+
+```
+
 Then, run the development server:
 
 ```bash
