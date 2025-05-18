@@ -37,6 +37,15 @@ npm install
 
 ```
 
+
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+
 Then, run the development server:
 
 ```bash
