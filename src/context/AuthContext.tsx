@@ -65,8 +65,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Redirect to Google OAuth endpoint
         window.location.href = '/api/auth/google';
       } else if (provider === 'spotify') {
-        // TODO: Implement Spotify OAuth
-        console.log('Spotify login not implemented yet');
+        // Redirect to Spotify OAuth endpoint
+        window.location.href = '/api/auth/spotify';
       }
     } catch (error) {
       console.error('Login failed:', error);

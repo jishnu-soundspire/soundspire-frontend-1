@@ -1,7 +1,7 @@
 'use client';
 
 import { useAuth } from '@/context/AuthContext';
-import { FaGoogle } from 'react-icons/fa';
+import { FaGoogle, FaSpotify } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -20,6 +20,14 @@ export default function LoginPage() {
       await login('google');
     } catch (error) {
       console.error('Google login failed:', error);
+    }
+  };
+
+  const handleSpotifyLogin = async () => {
+    try {
+      await login('spotify');
+    } catch (error) {
+      console.error('Spotify login failed:', error);
     }
   };
 
@@ -52,6 +60,14 @@ export default function LoginPage() {
           >
             <FaGoogle className="text-xl" />
             {isLoading ? 'Loading...' : 'Continue with Google'}
+          </button>
+          <button
+            onClick={handleSpotifyLogin}
+            disabled={isLoading}
+            className="w-full flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-[#1DB954] hover:bg-[#1ed760] text-white font-semibold border border-transparent transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <FaSpotify className="text-xl" />
+            {isLoading ? 'Loading...' : 'Continue with Spotify'}
           </button>
         </div>
 
