@@ -40,7 +40,7 @@ export default function LoginPage() {
             {/* <img src="images/logo-Photoroom.png" alt="SoundSpire Logo" className="inline-block"/>  */}
             <Image 
             src="images/logo-Photoroom.png"
-            alt='SoundSpire Log'
+            alt='SoundSpire Logo'
             className="inline-block"
             />
           </h1>
