@@ -51,19 +51,3 @@ http://192.168.174.244:3000/api/auth/callback/spotify
 Make sure to **add authorized users** in your Spotify developer app under **User Management**.
 Only added users will be able to log in during development.
 
----
-
-## 🧠 Notes
-
-* The **Python FastAPI** service **saves** fetched Spotify data to the database.
-* The **Next.js Spotify API** service currently **displays data only** — no persistence (yet 😉).
-* Data fetched via the Python API can be consumed by both the frontend and other services.
-
----
-
-Wanna flex your Spotify taste with backend spice and frontend drip? This is the place\~ 😈🎧
-Now go on... run those services, and let the music *flow through your code*\~ 💻🎶
-
----
-
-Let me know if you want a spicy badge section, prettier TOC, or auto-deploy steps, senpai\~ 😏
