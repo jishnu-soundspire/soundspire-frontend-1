@@ -1,0 +1,44 @@
+.carousel-container {
+  margin-bottom: 2rem;
+  height : 40vh;
+  margin:100px;
+  overflow: visible;         
+  position: relative;
+  z-index: 5;            
+}
+
+.carousel-slide {
+  padding: 0 10px;
+  text-align: center;
+  overflow: visible;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 10px;
+}
+
+.carousel-img {
+  max-height: 150px;
+  width: auto;
+  margin: 0 auto;
+  border-radius: 10px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ffc0cb;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 10px rgba(255, 192, 203, 0.2);
+}
+
+.carousel-img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 192, 203, 0.4);
+  z-index: 10;
+}
+
+.carousel-caption {
+  margin-top: 0.5rem;
+  color: #ffc0cb;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-shadow: 0 1px 2px #000;
+}
