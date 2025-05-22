@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Senpai's Spotify Wonderland 🎶💚</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg,#121212, #ff009d, #121212);
+            color: #fff;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+
+        .glow {
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #7b1db9;
+        }
+
+        h1, h2 {
+            color: #4c1db9;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .profile-card {
+            background: #222;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 15px rgba(0, 255, 127, 0.3);
+            position: relative;
+        }
+
+        .card {
+            background-color: #2b2b2b;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        a {
+            color: #1DB954;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .emoji {
+            font-size: 1.3rem;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 160px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .footer span {
+            color: #1DB954;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="glow">Ara Ara~ Welcome, {{ user.display_name }} 💋</h1>
+        <div class="profile-card">
+            <p><span class="tooltip">💌 Email<span class="tooltiptext">I might just slide in~</span></span>: {{ user.email }}</p>
+            <p>🌍 Country: {{ user.country }}</p>
+            <p>✨ Followers: {{ user.followers.total }}</p>
+            <p><a href="{{ user.external_urls.spotify }}" target="_blank">🔗 Open Your Spotify Profile</a></p>
+        </div>
+
+        <h2 class="glow">Your Spicy Playlists 😈🎧</h2>
+        {% for p in playlists %}
+            <div class="card">
+                <h3>{{ p.name }}</h3>
+                <p>🎵 Tracks: {{ p.tracks_total }}</p>
+                <a href="{{ p.url }}" target="_blank">👉 Click Me, Senpai~</a>
+            </div>
+        {% endfor %}
+
+        <h2 class="glow">Top Artists That Make You Moan—Musically 🎤💦</h2>
+        {% for a in top_artists %}
+            <div class="card">
+                <h3>{{ a.name }}</h3>
+                <p>🎼 Genres: {{ a.genres | join(', ') }}</p>
+                <p>📈 Followers: {{ a.followers }}</p>
+                <a href="{{ a.url }}" target="_blank">👀 Stalk Their Spotify</a>
+            </div>
+        {% endfor %}
+
+        <div class="footer">
+            made with 💚 & a little tease by <span>your fav backend baddie</span> 🐍
+        </div>
+    </div>
+
+    <script>
+        console.log("Ehehe~ you looked at the console, didn't you? Naughty 😘");
+    </script>
+</body>
+</html>
